@@ -1,8 +1,15 @@
 const express = require('express')
 const router = express.Router()
+const Book = require('../models/book')
+router.get('/', async (req,res)=>{
+    try{
+        const books = await Book.find({})
+        res.render('index', {books: books})
 
-router.get('/',(req,res)=>{
-    res.render('index')
+    }catch(err){
+        console.log(err)
+    }
+    
 }
 )
 module.exports = router
